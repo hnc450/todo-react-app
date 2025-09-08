@@ -1,5 +1,3 @@
-import Button from "./Button";
-
 type InputProps = {
     label: string;
     lableStyle?: string;
@@ -20,8 +18,10 @@ export default function Input({label,typeInput,lableStyle,inputStyle}:InputProps
         <input
            type={typeInput ? typeInput : 'text'} 
            id={id} 
-           className={inputStyle}/>
-          <Button types="submit" className="bg-purple-600 px-5 py-3 rounded-full text-white" label="ajouter"/>
+           className={inputStyle}
+           name="task"
+        />
+           
       </div>
   )
 }

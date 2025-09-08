@@ -13,7 +13,7 @@ export default function Button({id,types,onClick, className,label}:ButtonProps) 
     <button
       type={types}
       className={className}
-      onClick={() => onClick(id)}
+      onClick={ () => onClick(id)}
     >
       {label}
     </button>

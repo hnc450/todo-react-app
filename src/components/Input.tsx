@@ -1,27 +1,36 @@
 type InputProps = {
-    label: string;
-    lableStyle?: string;
-    inputStyle?: string;
-    typeInput?: string;
-}
+  label: string;
+  lableStyle?: string;
+  inputStyle?: string;
+  typeInput?: string;
+  input: string;
+  setInput: (value: string) => void;
+};
 
-export default function Input({label,typeInput,lableStyle,inputStyle}:InputProps) {
-  const id:string = 'todo-input';
+export default function Input({
+  label,
+  typeInput,
+  lableStyle,
+  inputStyle,
+  input,
+  setInput,
+}: InputProps) {
+  const id = "todo-input";
 
   return (
-      <div>
-        <label htmlFor={id} className={lableStyle}>
-            {
-              label
-            }
-        </label>
-        <input
-           type={typeInput ? typeInput : 'text'} 
-           id={id} 
-           className={inputStyle}
-           name="task"
-        />
-           
-      </div>
-  )
+    <div className="w-full">
+      <label htmlFor={id} className={lableStyle}>
+        {label}
+      </label>
+      <input
+        type={typeInput || "text"}
+        id={id}
+        name="task"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className={inputStyle}
+        placeholder="Ex: Acheter du lait"
+      />
+    </div>
+  );
 }

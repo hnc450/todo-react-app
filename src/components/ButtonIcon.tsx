@@ -1,19 +1,26 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 type ButtonIconProps = {
-    icone: ReactNode,
-    setVisible?: React.Dispatch<React.SetStateAction<boolean>>
-}
+  icone: ReactNode;
+  setVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteTask?: () => void;
+};
 
-export const ButtonIcon = ({icone,setVisible}: ButtonIconProps) => {
+export const ButtonIcon = ({ icone, setVisible, deleteTask }: ButtonIconProps) => {
+  const handleClick = () => {
+    if (setVisible) {
+      setVisible((visible) => !visible);
+    } else if (deleteTask) {
+      deleteTask();
+    }
+  };
 
-    return (
-
+  return (
     <button
-       className='bg-purple-600 text-white font-medium px-3 py-2 rounded-md hover:bg-indigo-700 transition rounded-full'
-       onClick ={setVisible ? (() => setVisible(visible => !visible)) : undefined}
-     > 
-       {icone}
+      className="bg-purple-600 text-white font-medium px-4 py-3 rounded-full hover:bg-purple-700 transition shadow-md"
+      onClick={handleClick}
+    >
+      {icone}
     </button>
-);
-}
+  );
+};

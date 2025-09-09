@@ -7,28 +7,34 @@ const Buttons = [
   { name: 'Completed', id: 'completed' }
 ];
 
-export default function MenuTodo() {
-  const [isActive, setIsActive] =  useState<String>('all');
+export default function MenuTodo({
+  setFilter,
+}: {
+  setFilter: (f: 'all' | 'active' | 'completed') => void;
+}) {
+  const [isActive, setIsActive] = useState<string>('all');
 
-  const handleClick = (id: string) => {
+  const handleClick = (id: 'all' | 'active' | 'completed') => {
     setIsActive(id);
+    setFilter(id);
   };
+
   return (
-    <div>
-        {
-          Buttons.map((button)=>{
-               return <Button 
-                   key={button.id}
-                   id={button.id}
-                   types="button" 
-                  className={`px-4 py-2 rounded-full ${
-                   isActive === button.id ? "bg-purple-700 text-white" : "bg-gray-200 text-black"
-                  }`}
-                   label={button.name}
-                   onClick={handleClick} 
-                  />
-           })
-        }
+    <div className="flex justify-center gap-3 my-6">
+      {Buttons.map((button) => (
+        <Button
+          key={button.id}
+          id={button.id}
+          types="button"
+          className={`px-4 py-2 rounded-full font-semibold transition ${
+            isActive === button.id
+              ? "bg-purple-600 text-white shadow-md"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+          label={button.name}
+          onClick={() => handleClick(button.id as 'all' | 'active' | 'completed')}
+        />
+      ))}
     </div>
-  )
+  );
 }

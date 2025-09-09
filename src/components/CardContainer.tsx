@@ -8,6 +8,7 @@ type Props = {
   onDelete?: () => void;
 };
 
+
 export default function CardContainer({ label, isChecked, onToggle, onDelete }: Props) {
   return (
     <div className="flex items-center justify-between bg-white shadow-sm rounded-lg px-4 py-3 w-full max-w-md mx-auto transition hover:shadow-md hover:bg-purple-50 mb-3">
